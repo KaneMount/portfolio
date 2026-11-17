@@ -17,12 +17,16 @@ bun run test       # tests
 ## GitHub Pages build
 
 ```sh
-bun run build:pages
+bun run build:docs
 ```
 
-This sets `GITHUB_PAGES=true`, which prerenders `/` to static HTML served from `/portfolio/`
-and copies `index.html` to `404.html`. The static site is written to **`dist/client/`**.
-Without `GITHUB_PAGES=true` the build is unchanged.
+This runs the existing `build:pages` command with `GITHUB_PAGES=true`, which prerenders `/`
+to static HTML served from `/portfolio/` and copies `index.html` to `404.html` in `dist/client/`.
+It then replaces **`docs/`** with all files from `dist/client/` and adds an empty `docs/.nojekyll`.
+Without `GITHUB_PAGES=true` the normal build and Lovable preview are unchanged.
+
+After every change to the site, run **`bun run build:docs`** again and commit the updated
+`docs/` folder together with the source changes, so GitHub Pages always serves the current site.
 
 ## Editing content
 
@@ -46,8 +50,9 @@ Put the PDF in `public/` (e.g. `public/margus-magi-cv.pdf`) and set
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs on every push to `main` and on manual dispatch. It
-installs with Bun, runs `bun run build:pages` and publishes `dist/client/` with
-GitHub's Pages actions. In the repository settings, set Pages → Source to "GitHub Actions".
+GitHub Pages serves the pre-built files committed in `docs/`; there is no GitHub Actions
+deployment workflow. In the repository settings, set Pages → Source to **Deploy from a branch**,
+select **main** and **/docs**, then save. Commit and push the regenerated `docs/` folder
+whenever the site changes.
 
 Add `public/og-image.png` (1200x630) for the share preview image.

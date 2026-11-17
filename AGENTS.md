@@ -33,4 +33,5 @@ use the editor.
 - Keep remaining portfolio sections in focused presentation components consuming the shared portfolio data, so biography and project facts are not duplicated.
 - Experience project links target the existing project title IDs, so cross-section navigation needs no changes to project cards.
 - GitHub Pages build is gated on GITHUB_PAGES=true in vite.config.ts (base /portfolio/, prerender "/" to dist/client); data-file paths go through assetUrl so they follow the base.
+- GitHub Pages serves committed docs/ rather than Actions artifacts; run bun run build:docs after every site change and commit its output so the deployed static files match the source.
 <!-- AGENT-MEMORY:END -->
