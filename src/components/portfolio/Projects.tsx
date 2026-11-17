@@ -19,7 +19,7 @@ function ProjectCard({ p, index, flip }: { p: Project; index: number; flip: bool
     <article
       aria-labelledby={`${p.id}-title`}
       className={cn(
-        "group relative border bg-card/75 transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary",
+        "group relative h-full border bg-card/75 transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary",
         featured ? "border-accent/50" : "border-border",
         wide && "md:col-span-2",
       )}
@@ -98,7 +98,7 @@ export function Projects() {
         {projects.map((p, i) => {
           const flip = p.size !== "standard" && wideCount++ % 2 === 1;
           return (
-            <Reveal key={p.id} className={cn(p.size !== "standard" && "md:col-span-2")}>
+            <Reveal key={p.id} className={cn("h-full", p.size !== "standard" && "md:col-span-2")}>
               <ProjectCard p={p} index={i} flip={flip} />
             </Reveal>
           );
