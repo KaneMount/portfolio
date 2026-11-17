@@ -46,7 +46,7 @@ export function MediaFrame({ media, title, ratio, featured }: { media: ProjectMe
             <span className="font-mono text-[10px] text-muted-foreground">{ratio}</span>
           </div>
         ) : (
-          <MediaItem key={i} m={media[i]} />
+          <MediaItem key={i} m={media[i] ?? media[0]!} />
         )}
         <Brackets tone={featured ? "accent" : "primary"} />
       </div>
