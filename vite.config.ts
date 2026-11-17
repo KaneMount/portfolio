@@ -6,13 +6,23 @@
 // Never set ssr.external or resolve.external: the Worker has no runtime module resolution, so
 // the build fails. Never add compression (compressPublicAssets, vite-plugin-compression):
 // hosting already compresses at the edge.
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+
+// GITHUB_PAGES=true (set only by .github/workflows/deploy.yml) prerenders "/" to static HTML
+// served from /portfolio/. Without it the build is the normal Lovable build.
+const githubPages = process.env['GITHUB_PAGES'] === "true";
 
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    ...(githubPages
+      ? {
+          router: { basepath: "/portfolio" },
+          pages: [{ path: "/" }],
+          prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
+        }
+      : {}),
   },
+  ...(githubPages ? { vite: { base: "/portfolio/" } } : {}),
 });

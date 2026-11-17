@@ -1,3 +1,4 @@
+import { assetUrl } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/data/portfolio";
@@ -66,7 +67,7 @@ export function Nav() {
           <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
             {sections.map((s) => link(s))}
             {profile.cvUrl && (
-              <a href={profile.cvUrl} className="border border-border px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-foreground hover:border-accent hover:text-accent">
+              <a href={assetUrl(profile.cvUrl)} className="border border-border px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-foreground hover:border-accent hover:text-accent">
                 CV
               </a>
             )}
@@ -86,7 +87,7 @@ export function Nav() {
           <nav id="mobile-nav" aria-label="Primary mobile" className="border-t border-border bg-background md:hidden">
             {sections.map((s) => link(s, true))}
             {profile.cvUrl && (
-              <a href={profile.cvUrl} className="block px-4 py-4 font-mono text-xs uppercase tracking-[0.15em] text-foreground">
+              <a href={assetUrl(profile.cvUrl)} className="block px-4 py-4 font-mono text-xs uppercase tracking-[0.15em] text-foreground">
                 CV
               </a>
             )}

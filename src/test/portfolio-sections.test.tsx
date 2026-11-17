@@ -35,7 +35,7 @@ describe("Portfolio section rules", () => {
       expect(screen.queryByRole("link", { name: "Download CV" })).toBeNull();
       profile.cvUrl = "portfolio-cv.pdf";
       view.rerender(<Contact />);
-      expect(screen.getByRole("link", { name: "Download CV" }).getAttribute("href")).toBe("portfolio-cv.pdf");
+      expect(screen.getByRole("link", { name: "Download CV" }).getAttribute("href")).toBe(`${import.meta.env.BASE_URL}portfolio-cv.pdf`);
     } finally {
       profile.cvUrl = previousUrl;
     }

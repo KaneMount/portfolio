@@ -1,3 +1,4 @@
+import { assetUrl } from "@/lib/utils";
 import { useState } from "react";
 import { Play } from "lucide-react";
 import type { ProjectMedia } from "@/data/portfolio";
@@ -29,8 +30,8 @@ export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
 function MediaItem({ m }: { m: ProjectMedia }) {
   if (m.type === "youtube") return <YouTubeEmbed id={m.src} title={m.alt} />;
   if (m.type === "video")
-    return <video className="absolute inset-0 h-full w-full object-cover" src={m.src} controls preload="none" aria-label={m.alt} />;
-  return <img className="absolute inset-0 h-full w-full object-cover" src={m.src} alt={m.alt} loading="lazy" />;
+    return <video className="absolute inset-0 h-full w-full object-cover" src={assetUrl(m.src)} controls preload="none" aria-label={m.alt} />;
+  return <img className="absolute inset-0 h-full w-full object-cover" src={assetUrl(m.src)} alt={m.alt} loading="lazy" />;
 }
 
 export function MediaFrame({ media, title, ratio, featured }: { media: ProjectMedia[]; title: string; ratio: "16:9" | "4:3"; featured?: boolean }) {
@@ -62,7 +63,7 @@ export function MediaFrame({ media, title, ratio, featured }: { media: ProjectMe
               className={cn("relative h-12 w-20 shrink-0 overflow-hidden border", idx === i ? "border-primary" : "border-border")}
             >
               {m.type === "image" ? (
-                <img src={m.src} alt="" loading="lazy" className="h-full w-full object-cover" />
+                <img src={assetUrl(m.src)} alt="" loading="lazy" className="h-full w-full object-cover" />
               ) : m.type === "youtube" ? (
                 <img src={`https://i.ytimg.com/vi/${m.src}/default.jpg`} alt="" loading="lazy" className="h-full w-full object-cover" />
               ) : (

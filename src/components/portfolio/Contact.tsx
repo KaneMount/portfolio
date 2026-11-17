@@ -1,3 +1,4 @@
+import { assetUrl } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { profile } from "@/data/portfolio";
@@ -41,7 +42,7 @@ export function Contact() {
         <div className="mt-7 flex flex-wrap gap-3">
           <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className={btn.secondary}>LinkedIn<ArrowUpRight size={14} aria-hidden /></a>
           <a href={profile.links.company} target="_blank" rel="noopener noreferrer" className={btn.secondary}>Company website<ArrowUpRight size={14} aria-hidden /></a>
-          {profile.cvUrl && <a href={profile.cvUrl} download className={btn.secondary}>Download CV<ArrowUpRight size={14} aria-hidden /></a>}
+          {profile.cvUrl && <a href={assetUrl(profile.cvUrl)} download className={btn.secondary}>Download CV<ArrowUpRight size={14} aria-hidden /></a>}
         </div>
         <MiniLabel className="mb-3 mt-9">Availability</MiniLabel>
         <div className="flex flex-wrap gap-2">{profile.availability.map((item) => <Tag key={item}>{item}</Tag>)}</div>

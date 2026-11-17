@@ -1,3 +1,4 @@
+import { assetUrl } from "@/lib/utils";
 import { profile } from "@/data/portfolio";
 import { Tag, btn, MiniLabel } from "./ui";
 
@@ -12,7 +13,7 @@ export function Hero() {
     { label: "LinkedIn", value: <a className="text-primary hover:underline" href={profile.links.linkedin} {...ext}>margusmagi-unreal</a> },
     { label: "Company", value: <a className="text-primary hover:underline" href={profile.links.company} {...ext}>dynamicrenderinteractive.com</a> },
   ];
-  if (profile.cvUrl) rows.push({ label: "CV", value: <a className="text-primary hover:underline" href={profile.cvUrl}>Download PDF</a> });
+  if (profile.cvUrl) rows.push({ label: "CV", value: <a className="text-primary hover:underline" href={assetUrl(profile.cvUrl)}>Download PDF</a> });
 
   return (
     <section id="top" className="relative">
