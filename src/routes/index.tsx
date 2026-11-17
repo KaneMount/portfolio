@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav, sections } from "@/components/portfolio/Nav";
+import { Nav } from "@/components/portfolio/Nav";
 import { Hero } from "@/components/portfolio/Hero";
 import { Projects } from "@/components/portfolio/Projects";
-import { SectionHeading } from "@/components/portfolio/ui";
+import { Expertise, Experience, About } from "@/components/portfolio/Sections";
+import { Contact, Footer } from "@/components/portfolio/Contact";
 import { profile } from "@/data/portfolio";
 
 const description = `${profile.name} — ${profile.title}. ${profile.roles.join(", ")}. ${profile.location}.`;
@@ -28,12 +29,12 @@ function Index() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <Projects />
-        {sections.slice(1).map((s) => (
-          <section key={s.id} id={s.id} aria-labelledby={`${s.id}-heading`} className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-            <SectionHeading id={`${s.id}-heading`}>{s.label}</SectionHeading>
-          </section>
-        ))}
+        <Expertise />
+        <Experience />
+        <About />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }

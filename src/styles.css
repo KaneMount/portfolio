@@ -119,6 +119,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 section[id] { scroll-margin-top: 4.5rem; }
+[id$="-title"] { scroll-margin-top: 4.5rem; }
 
 @utility grid-bg {
   background-image:

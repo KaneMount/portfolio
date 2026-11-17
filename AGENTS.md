@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+<!-- AGENT-MEMORY:BEGIN -->
+- Keep remaining portfolio sections in focused presentation components consuming the shared portfolio data, so biography and project facts are not duplicated.
+- Experience project links target the existing project title IDs, so cross-section navigation needs no changes to project cards.
+<!-- AGENT-MEMORY:END -->
