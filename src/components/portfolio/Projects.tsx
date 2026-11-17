@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { projects, type Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
-import { BulletList, MiniLabel, Reveal, SectionHeading, Tag, btn } from "./ui";
+import { BulletList, MiniLabel, SectionHeading, Tag, btn } from "./ui";
 import { MediaFrame } from "./Media";
 import { CaseStudy } from "./CaseStudy";
 
@@ -19,7 +19,7 @@ function ProjectCard({ p, index, flip }: { p: Project; index: number; flip: bool
     <article
       aria-labelledby={`${p.id}-title`}
       className={cn(
-        "group relative h-full border bg-card/75 transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary",
+        "group relative h-full border bg-card transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary",
         featured ? "border-accent/50" : "border-border",
         wide && "md:col-span-2",
       )}
@@ -92,15 +92,15 @@ function ProjectCard({ p, index, flip }: { p: Project; index: number; flip: bool
 export function Projects() {
   let wideCount = 0;
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+    <section id="projects" aria-labelledby="projects-heading" className="mx-auto max-w-6xl px-5 pb-20 pt-10 md:pb-28 md:pt-14">
       <SectionHeading id="projects-heading">Projects</SectionHeading>
       <div className="grid gap-8 md:grid-cols-2">
         {projects.map((p, i) => {
           const flip = p.size !== "standard" && wideCount++ % 2 === 1;
           return (
-            <Reveal key={p.id} className={cn("h-full", p.size !== "standard" && "md:col-span-2")}>
+            <div key={p.id} className={cn("h-full", p.size !== "standard" && "md:col-span-2")}>
               <ProjectCard p={p} index={i} flip={flip} />
-            </Reveal>
+            </div>
           );
         })}
       </div>

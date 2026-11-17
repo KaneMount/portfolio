@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export function Tag({ children, tone = "default" }: { children: ReactNode; tone?: "default" | "cyan" | "magenta" }) {
@@ -61,29 +61,5 @@ export function Brackets({ tone = "primary" }: { tone?: "primary" | "accent" }) 
       <span aria-hidden className={cn(s, c, "bottom-2 left-2 border-b border-l")} />
       <span aria-hidden className={cn(s, c, "bottom-2 right-2 border-b border-r")} />
     </>
-  );
-}
-
-export function Reveal({ children, className }: { children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e?.isIntersecting) {
-          el.classList.add("is-visible");
-          io.disconnect();
-        }
-      },
-      { threshold: 0.08 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <div ref={ref} className={cn("reveal", className)}>
-      {children}
-    </div>
   );
 }

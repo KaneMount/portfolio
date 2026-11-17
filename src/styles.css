@@ -136,13 +136,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 @utility fade-line {
   background: linear-gradient(to right, var(--border), transparent);
 }
-@utility reveal {
-  opacity: 0; transform: translateY(8px);
-  transition: opacity .5s ease, transform .5s ease;
-  &.is-visible { opacity: 1; transform: none; }
-}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
-  .reveal { opacity: 1; transform: none; }
 }

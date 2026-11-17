@@ -8,7 +8,7 @@ export function Hero() {
     { label: "Location", value: profile.location },
     { label: "Experience", value: "8+ years Unreal Engine" },
     { label: "Leadership", value: "4+ years Tech Lead" },
-    { label: "Email", value: <a className="break-all text-primary hover:underline" href={`mailto:${profile.email}`}>{profile.email}</a> },
+    { label: "Email", value: <a className="text-primary [overflow-wrap:normal] [word-break:normal] hover:underline lg:whitespace-nowrap lg:text-xs" href={`mailto:${profile.email}`}>{profile.email.split("@")[0]}@<wbr />{profile.email.split("@")[1]}</a> },
     { label: "LinkedIn", value: <a className="text-primary hover:underline" href={profile.links.linkedin} {...ext}>margusmagi-unreal</a> },
     { label: "Company", value: <a className="text-primary hover:underline" href={profile.links.company} {...ext}>dynamicrenderinteractive.com</a> },
   ];
@@ -17,7 +17,7 @@ export function Hero() {
   return (
     <section id="top" className="relative">
       <div aria-hidden className="grid-bg absolute inset-0 -z-0" />
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-5 pb-20 pt-16 md:pt-24 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-5 pb-10 pt-16 md:pt-24 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
         <div className="min-w-0">
           <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             <span aria-hidden className="h-px w-8 bg-accent" />
@@ -45,7 +45,7 @@ export function Hero() {
             <a href="#contact" className={btn.secondary}>Get in Touch</a>
           </div>
         </div>
-        <aside aria-label="Details" className="self-start border border-border border-l-2 border-l-primary bg-card/75">
+        <aside aria-label="Details" className="self-start border border-border border-l-2 border-l-primary bg-card">
           <div className="border-b border-border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
             Details
           </div>
