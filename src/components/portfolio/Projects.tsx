@@ -33,7 +33,7 @@ function ProjectCard({ p, index, flip }: { p: Project; index: number; flip: bool
           p.size === "large" && "lg:grid-cols-[1fr_1fr]",
         )}
       >
-        <div className={cn(wide && flip && "lg:order-2")}>
+        <div className={cn("min-w-0", wide && flip && "lg:order-2")}>
           <MediaFrame media={p.media} title={p.title} ratio={wide ? "16:9" : "4:3"} featured={featured} />
         </div>
         <div className="min-w-0">

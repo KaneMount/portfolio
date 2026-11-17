@@ -23,6 +23,7 @@ describe("Committed GitHub Pages site", () => {
     for (const asset of assets) {
       const url = asset.getAttribute("src") ?? asset.getAttribute("href") ?? "";
       if (url.startsWith("https://fonts.googleapis.com/")) continue;
+      if (url.startsWith("https://i.ytimg.com/vi/")) continue;
       expect(url.startsWith("/portfolio/")).toBe(true);
       expect(existsSync(resolve("docs", url.slice("/portfolio/".length)))).toBe(true);
     }

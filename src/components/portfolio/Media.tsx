@@ -5,6 +5,20 @@ import type { ProjectMedia } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { Brackets } from "./ui";
 
+export function YouTubeThumbnail({ id, title, className }: { id: string; title: string; className: string }) {
+  const [fallback, setFallback] = useState(false);
+  return (
+    <img
+      src={`https://i.ytimg.com/vi/${id}/${fallback ? "hqdefault" : "maxresdefault"}.jpg`}
+      alt={title}
+      loading="lazy"
+      className={className}
+      onError={() => { if (!fallback) setFallback(true); }}
+      onLoad={(event) => { if (!fallback && event.currentTarget.naturalWidth === 120) setFallback(true); }}
+    />
+  );
+}
+
 export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
   const [play, setPlay] = useState(false);
   if (play)
@@ -19,7 +33,7 @@ export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
     );
   return (
     <button type="button" onClick={() => setPlay(true)} className="group absolute inset-0" aria-label={`Play video: ${title}`}>
-      <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" className="h-full w-full object-cover" />
+      <YouTubeThumbnail id={id} title={title} className="h-full w-full object-cover" />
       <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-primary bg-background/85 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <Play size={22} />
       </span>
@@ -36,18 +50,19 @@ function MediaItem({ m }: { m: ProjectMedia }) {
 
 export function MediaFrame({ media, title, ratio, featured }: { media: ProjectMedia[]; title: string; ratio: "16:9" | "4:3"; featured?: boolean }) {
   const [i, setI] = useState(0);
+  const selected = media[i] ?? media[0];
   const aspect = ratio === "16:9" ? "aspect-video" : "aspect-[4/3]";
   return (
     <div>
       <div className={cn("relative overflow-hidden border border-border bg-card", aspect)}>
-        {media.length === 0 ? (
+        {!selected ? (
           <div className="grid-faint absolute inset-0 flex flex-col items-center justify-center gap-2 text-center">
             <span className="font-mono text-xs tracking-[0.3em] text-muted-foreground">MEDIA SLOT</span>
             <span className="font-mono text-[11px] text-body">{title}</span>
             <span className="font-mono text-[10px] text-muted-foreground">{ratio}</span>
           </div>
         ) : (
-          <MediaItem key={i} m={media[i] ?? media[0]!} />
+          <MediaItem key={i} m={selected} />
         )}
         <Brackets tone={featured ? "accent" : "primary"} />
       </div>
@@ -65,7 +80,7 @@ export function MediaFrame({ media, title, ratio, featured }: { media: ProjectMe
               {m.type === "image" ? (
                 <img src={assetUrl(m.src)} alt="" loading="lazy" className="h-full w-full object-cover" />
               ) : m.type === "youtube" ? (
-                <img src={`https://i.ytimg.com/vi/${m.src}/default.jpg`} alt="" loading="lazy" className="h-full w-full object-cover" />
+                <YouTubeThumbnail id={m.src} title="" className="h-full w-full object-cover" />
               ) : (
                 <span className="font-mono text-[10px] text-muted-foreground">VIDEO</span>
               )}

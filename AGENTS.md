@@ -34,4 +34,5 @@ use the editor.
 - Experience project links target the existing project title IDs, so cross-section navigation needs no changes to project cards.
 - GitHub Pages build is gated on GITHUB_PAGES=true in vite.config.ts (base /portfolio/, prerender "/" to dist/client); data-file paths go through assetUrl so they follow the base.
 - GitHub Pages serves committed docs/ rather than Actions artifacts; run bun run build:docs after every site change and commit its output so the deployed static files match the source.
+- Keep supplied portfolio media as byte-preserved files in public/media with relative data paths for portable GitHub Pages hosting; share YouTube thumbnail fallback between main media and selectors.
 <!-- AGENT-MEMORY:END -->

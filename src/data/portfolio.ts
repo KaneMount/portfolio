@@ -83,7 +83,12 @@ export const projects: Project[] = [
       label: "View case study",
       url: "https://www.dynamicrenderinteractive.com/work/case-study-2",
     },
-    media: [],
+    media: [
+      { type: "youtube", src: "gsfzphAT3tg", alt: "Browser spectator triggering a meteor shower in a live Cradle of Sins match through Unreal Engine Pixel Streaming" },
+      { type: "youtube", src: "758txZn6fWg", alt: "Recap of a Cradle of Sins tournament from the game's VR MOBA phase" },
+      { type: "image", src: "media/cradle-of-sins/bongo-tower.jpg", alt: "Bongo Tower, the PC/VR platformer game mode of Cradle of Sins" },
+      { type: "image", src: "media/cradle-of-sins/serpents-rest.jpg", alt: "Serpent's Rest, the PC/VR MOBA game mode of Cradle of Sins" },
+    ],
     caseStudy: [
       {
         title: "Multiplayer",
@@ -136,7 +141,10 @@ export const projects: Project[] = [
     ],
     tags: ["Unreal Engine", "FPS", "Time loop", "Gameplay systems", "Architecture", "Perforce", "Game jam"],
     link: { label: "Play on itch.io", url: "https://khuzdul.itch.io/god-machine" },
-    media: [],
+    media: [
+      { type: "youtube", src: "MPeXPTN0FZI", alt: "Short God Machine gameplay video" },
+      { type: "image", src: "media/god-machine/god-machine.jpg", alt: "God Machine in-game screenshot" },
+    ],
   },
   {
     id: "slum-ball",
@@ -169,7 +177,9 @@ export const projects: Project[] = [
       label: "View case study",
       url: "https://www.dynamicrenderinteractive.com/work/case-study-1",
     },
-    media: [],
+    media: [
+      { type: "image", src: "media/gscan/gscan-docks.jpg", alt: "GScan promotional render of the scanner at a container port" },
+    ],
   },
 ];
 

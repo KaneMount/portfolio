@@ -10,7 +10,7 @@ const siteUrl = "https://kanemount.github.io/portfolio/";
 const title = "Margus Mägi — Senior Unreal Engine Developer";
 const description =
   "Portfolio of Margus Mägi, Senior Unreal Engine Developer and Tech Lead. Multiplayer, gameplay, AWS backend and Pixel Streaming work in UE4/UE5.";
-const ogImage = "https://kanemount.github.io/portfolio/og-image.png";
+const ogImage = "https://kanemount.github.io/portfolio/og-image.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,6 +23,8 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:url", content: siteUrl },
       { property: "og:image", content: ogImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
