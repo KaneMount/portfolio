@@ -174,10 +174,11 @@ export const projects: Project[] = [
     category: "Unreal Engine Cinematic",
     size: "standard",
     role: "Cinematic production",
+    context: "Client project at Dynamic Render Interactive",
     summary:
-      "Investor-facing promotional renders and footage showcasing the product and its workflow, produced with an Unreal Engine cinematic pipeline.",
+      "Promotional renders and footage for GScan, a company developing muon tomography for non-destructive inspection of infrastructure. Made for investor presentations to visualise the technology and its workflow, produced with an Unreal Engine cinematic pipeline.",
     contributions: ["Scene setup and lighting", "Cameras and sequencing", "Rendered output"],
-    tags: ["Scene setup", "Lighting", "Cameras", "Sequencer", "Rendered output"],
+    tags: ["Product visualization", "Scene setup", "Lighting", "Cameras", "Sequencer", "Rendered output"],
     link: {
       label: "View case study",
       url: "https://www.dynamicrenderinteractive.com/work/case-study-1",
