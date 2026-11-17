@@ -9,7 +9,7 @@ export function Expertise() {
   return (
     <section id="expertise" aria-labelledby="expertise-heading" className={sectionClass}>
       <SectionHeading id="expertise-heading">Expertise</SectionHeading>
-      <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-px border border-border bg-border after:hidden after:bg-background after:content-[''] sm:grid-cols-2 sm:after:block lg:grid-cols-3 lg:after:hidden">
         {expertise.map((group) => (
           <div key={group.name} className="min-w-0 bg-background p-5 transition-colors duration-150 hover:bg-card md:p-6">
             <h3 className="mb-4 font-mono text-xs uppercase text-primary">{group.name}</h3>
