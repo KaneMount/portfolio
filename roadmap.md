@@ -10,3 +10,7 @@
 # Project media
 - [x] Add the supplied images, ordered videos and shared thumbnail fallback; update sharing tags.
 - [x] Regenerate docs/ and verify every media selector on desktop and phone.
+
+# Trailer and video posters
+- [x] Add optional local posters, prepend the trailer and save the unchanged Slum Ball image.
+- [x] Regenerate docs/ and verify media on desktop and phone.

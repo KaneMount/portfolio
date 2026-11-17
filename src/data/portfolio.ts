@@ -32,7 +32,9 @@ export const profile = {
 };
 
 // For type "youtube", src is the YouTube video ID only (not a full URL).
-export type ProjectMedia = { type: "image" | "video" | "youtube"; src: string; alt: string };
+export type ProjectMedia =
+  | { type: "image" | "video"; src: string; alt: string }
+  | { type: "youtube"; src: string; alt: string; poster?: string };
 
 export type Project = {
   id: string;
@@ -84,6 +86,7 @@ export const projects: Project[] = [
       url: "https://www.dynamicrenderinteractive.com/work/case-study-2",
     },
     media: [
+      { type: "youtube", src: "E5levOlcmms", alt: "Cradle of Sins official trailer" },
       { type: "youtube", src: "gsfzphAT3tg", alt: "Browser spectator triggering a meteor shower in a live Cradle of Sins match through Unreal Engine Pixel Streaming" },
       { type: "youtube", src: "758txZn6fWg", alt: "Recap of a Cradle of Sins tournament from the game's VR MOBA phase" },
       { type: "image", src: "media/cradle-of-sins/bongo-tower.jpg", alt: "Bongo Tower, the PC/VR platformer game mode of Cradle of Sins" },
@@ -161,7 +164,9 @@ export const projects: Project[] = [
       label: "View on Steam",
       url: "https://store.steampowered.com/app/850500/Slum_Ball_VR_Tournament/",
     },
-    media: [],
+    media: [
+      { type: "image", src: "media/slum-ball/slum-ball.jpg", alt: "Slum Ball VR gameplay: a sewer tunnel lane with targets at the far end" },
+    ],
   },
   {
     id: "gscan",

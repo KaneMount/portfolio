@@ -5,21 +5,21 @@ import type { ProjectMedia } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { Brackets } from "./ui";
 
-export function YouTubeThumbnail({ id, title, className }: { id: string; title: string; className: string }) {
+export function YouTubeThumbnail({ id, title, className, poster }: { id: string; title: string; className: string; poster?: string | undefined }) {
   const [fallback, setFallback] = useState(false);
   return (
     <img
-      src={`https://i.ytimg.com/vi/${id}/${fallback ? "hqdefault" : "maxresdefault"}.jpg`}
+      src={poster ? assetUrl(poster) : `https://i.ytimg.com/vi/${id}/${fallback ? "hqdefault" : "maxresdefault"}.jpg`}
       alt={title}
       loading="lazy"
       className={className}
-      onError={() => { if (!fallback) setFallback(true); }}
-      onLoad={(event) => { if (!fallback && event.currentTarget.naturalWidth === 120) setFallback(true); }}
+      onError={() => { if (!poster && !fallback) setFallback(true); }}
+      onLoad={(event) => { if (!poster && !fallback && event.currentTarget.naturalWidth === 120) setFallback(true); }}
     />
   );
 }
 
-export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
+export function YouTubeEmbed({ id, title, poster }: { id: string; title: string; poster?: string | undefined }) {
   const [play, setPlay] = useState(false);
   if (play)
     return (
@@ -33,7 +33,7 @@ export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
     );
   return (
     <button type="button" onClick={() => setPlay(true)} className="group absolute inset-0" aria-label={`Play video: ${title}`}>
-      <YouTubeThumbnail id={id} title={title} className="h-full w-full object-cover" />
+      <YouTubeThumbnail id={id} title={title} poster={poster} className="h-full w-full object-cover" />
       <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-primary bg-background/85 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <Play size={22} />
       </span>
@@ -42,7 +42,7 @@ export function YouTubeEmbed({ id, title }: { id: string; title: string }) {
 }
 
 function MediaItem({ m }: { m: ProjectMedia }) {
-  if (m.type === "youtube") return <YouTubeEmbed id={m.src} title={m.alt} />;
+  if (m.type === "youtube") return <YouTubeEmbed id={m.src} title={m.alt} poster={m.poster} />;
   if (m.type === "video")
     return <video className="absolute inset-0 h-full w-full object-cover" src={assetUrl(m.src)} controls preload="none" aria-label={m.alt} />;
   return <img className="absolute inset-0 h-full w-full object-cover" src={assetUrl(m.src)} alt={m.alt} loading="lazy" />;
@@ -80,7 +80,7 @@ export function MediaFrame({ media, title, ratio, featured }: { media: ProjectMe
               {m.type === "image" ? (
                 <img src={assetUrl(m.src)} alt="" loading="lazy" className="h-full w-full object-cover" />
               ) : m.type === "youtube" ? (
-                <YouTubeThumbnail id={m.src} title="" className="h-full w-full object-cover" />
+                <YouTubeThumbnail id={m.src} title="" poster={m.poster} className="h-full w-full object-cover" />
               ) : (
                 <span className="font-mono text-[10px] text-muted-foreground">VIDEO</span>
               )}
